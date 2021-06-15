@@ -1,0 +1,38 @@
+Project intro:
+New City subway system is updating their seasonal pattern to determine the current mass transmit system. 
+How did the traffic pattern change compared to pre-Covid. 
+Five questions are asked ?
+
+How did the Average weekday traffic pattern change?
+
+
+How did the average weekend traffic change?
+
+
+Turnstile utilizations. The busiest and the slowest turnstiles. 
+
+What are the most drastic changes in terms of station traffic?
+We first combine all turnstiles counts that belong to the same station. Weekday traffic are combined into one weekday values, and weekend values are combined together. 
+
+Then on a per station basis, the top 20 with the largest percentage change are listed, together with the top 20 with the largest traffic changes.
+
+
+Jumping the turnstiles, total in traffic versus total out traffic, whole system,
+
+total in total out in a station.
+
+  
+One of the questions they have is that if they should expanding their 
+subway system, and where to expand.
+One of the way to get data is to examine if there is a lot of existing transfer   
+
+
+Data:
+It use 1 week of data in June across 10 years period. The first 8 years are used establish 
+the normal pattern, then the last two are used to indicate the covid period. 
+
+Instead of a previous year, a 3 month-ago data is used. Seasonal patterns are present as well as long term trend like populatoin change. 
+
+A 3 week period could be used as well for more , but  
+
+different time period, different number of lines,
