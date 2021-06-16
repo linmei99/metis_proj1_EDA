@@ -1,0 +1,44 @@
+				Project Plan
+
+Design:
+New City subway authorities are performing a review on the current mass transmit system. They want to know how did the traffic pattern change compared to pre-Covid? 
+Four questions are asked:
+1. How did the Average weekday traffic pattern change?
+2. How did the average weekend traffic change?
+3. In terms of traffic pattern, which stations have the largest change? 
+4. Which station need to install more turnstiles the most?
+
+Data:
+This study will use 1 week of MTA data in March across 12 consecutive years. The first 10 years are used establish the pre-covid pattern, while the data from last two years are used to indicate current trend. Standard statistics like mean and variance, for per day ingress and egress traffic, and peak ingress and egress data per 4 hour period will be used to draw the conclusions.
+
+A total of 12 weeks of data will be used, which is close to 3 months of continious data. The first week of March is chosen due to it being in the school year instead of school break.
+
+Algorithm: 
+1. Cleaning
+The SCP and UNIT column of the tables are used to uniquely identify the turnstiles in question. The per period ingress and egress traffic will be generated using the traffic counters of the same machine. Then a new table is generated, to aggregate the turnstiles in the same station into a per station values.
+
+Here, the UNIT column is used to uniquely identify a station, so the data is summed over different SCP. 
+
+2. 
+The Per week data is checked for anomality in the various fields. Description field containing data other than "REGULAR" requires special attention. 
+Then save results into a csv file. SQLite will read this file, and generate a new file consist of per turnstile data per week, instead of per collection period. Then data from different weeks will be merged into one large database
+
+3.
+Then additional processing is using from python to look at the data from the 12 year period. 
+
+Tools:
+
+Cleaning is done using pandas to read the raw text files, generate the per period traffic, and save back into a csv file to be read by SQLite, so each week of dta is saved into a file. 
+
+The data format in the csv file is changed mm/dd/yyyy to YYYY-MM-DD to allow sorting by SQL while in the text format. 
+
+A python program will read the database files over the 12 year period, and generate the trend of the pre-covid period, and examine the impact of the two covid years.
+
+The station with the largest change will be identified.
+ 
+The cleaned, aggregated data will be plotted using matplotlib to show the trends.
+
+Goal:
+A series of plots to indicate the general trend for the subway system, and a list of stations that have large change in traffic, and a list of stations having busy turnstiles, and needing expansion.  
+
+
