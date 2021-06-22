@@ -1,17 +1,16 @@
 				Project Plan
 
 Design:
-New City subway authorities are performing a review on the current mass transmit system. They want to know how did the traffic pattern change compared to pre-Covid? 
-Four questions are asked:
-1. How did the Average weekday traffic pattern change?
-2. How did the average weekend traffic change?
-3. In terms of traffic pattern, which stations have the largest change? 
-4. Which station need to install more turnstiles the most?
+New City subway authorities are performing a review on the current mass transmit system. They want to know how the subway usage pattern has evolved over the years after COVID.
+Specifically, how did the total traffic pattern change?
+This project will look at the total traffic in and out of the station to examine how the data change over time.
 
 Data:
-This study will use 1 week of MTA data in March across 12 consecutive years. The first 10 years are used establish the pre-covid pattern, while the data from last two years are used to indicate current trend. Standard statistics like mean and variance, for per day ingress and egress traffic, and peak ingress and egress data per 4 hour period will be used to draw the conclusions.
+This study will use 1 week of MTA data every 6 months across 7 consecutive years. Due to change in the datafile format, data from before 2014 are not comparible with data after 2014.  
+So data from 2015-2021 are used in this study. The first 5 years are used establish the pre-covid pattern, while the data from last two years are used to indicate current trend. 
+The traffic counts showed a large net inflow in the years before COVID, and a large net outflow in the most recent data. The total data as well as per station inflow/outflow data are examined to see the change in pattern. 
 
-A total of 12 weeks of data will be used, which is close to 3 months of continious data. The first week of March is chosen due to it being in the school year instead of school break.
+The total inflow and outflow should be very close in any extended period of time. This is however, not the case for the data examined. 
 
 Algorithm: 
 1. Cleaning
@@ -20,7 +19,8 @@ The SCP and UNIT column of the tables are used to uniquely identify the turnstil
 Here, the UNIT column is used to uniquely identify a station, so the data is summed over different SCP. 
 
 2. 
-The Per week data is checked for anomality in the various fields. Description field containing data other than "REGULAR" requires special attention. 
+The Per audit period traffic data is checked for anomality in the various fields. Description field containing data other than "REGULAR" requires special attention. Very large 
+traffic value and very large negative values are regarded as invalid and replaced with 0. Small negative values are replaced with their absolute values thus become a small positive value.
 Then save results into a csv file. SQLite will read this file, and generate a new file consist of per turnstile data per week, instead of per collection period. Then data from different weeks will be merged into one large database
 
 3.
@@ -38,7 +38,7 @@ The station with the largest change will be identified.
  
 The cleaned, aggregated data will be plotted using matplotlib to show the trends.
 
-Goal:
-A series of plots to indicate the general trend for the subway system, and a list of stations that have large change in traffic, and a list of stations having busy turnstiles, and needing expansion.  
+Conclusion:
+The change in traffic pattern occurred to most of the stations. Most stations see the balance in net traffic closer to 0. In terms of net traffic, the top 70 stations account for half the change in net traffic, while the remianing 400 stations account for the other half. A list of stations that have large change in traffic, are listed in the end.
 
 
