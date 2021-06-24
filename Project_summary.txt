@@ -1,0 +1,48 @@
+				Project Summary
+
+Abstract:
+This is a project utilizing Python, SQL and Seaborn to process and visualize the changing 
+traffic pattern in New York City subway system. From the graphs, we can see a shift from large uncaptured exit traffic, to a moderate amount of uncaptured entry traffic. The improve in seen system wide. This should be closed matched with local policy change to examine the cause of this shift in pattern.
+
+Design:
+New City subway authorities are performing a review on the current mass transmit system. They want to know how the subway usage pattern has evolved after COVID.
+Specifically, how did the total traffic pattern change, and which stations are having the largest change?
+This project found that a large reduction in traffic since COVID started, and it has rebounded somewhat, but still far from pre-COVID traffic levels. The main fault in traffic data has changed from large uncaptured exit traffic to a moderate amount of uncaptured entry traffic. Uncaptured entry traffic usually implies lost revenue. Local expertise is needed to further examine the main cause of the fault.
+The stations with large change in traffic has been identified as well.
+
+Data:
+This study will use 1 week of MTA data every year across 7 consecutive years. Due to change in the datafile format, data from before 2014 are not comparible with data after 2014.  
+So data from 2015-2021 are used in this study. The first 5 years are used establish the pre-covid pattern, while the data from last two years are used to indicate current trend. 
+The data before 2019 are fairly stable, so 1 week per year is a sufficient sample. Data after 2019 are taken every 6 months to get more detailed data. 
+
+The traffic counts showed a large net inflow in the years before COVID, and a large net outflow in the most recent data. The total data as well as per station inflow/outflow data are examined to see the change in pattern. 
+
+The total inflow and outflow should be very close in any extended period of time. This is however, not the case for the data examined. This observation leads to further examination of the imbalance over different station, and over different time periods.
+
+Algorithm: 
+1. Cleaning
+The SCP and UNIT column of the tables are used to uniquely identify the turnstiles in question. The per period ingress and egress traffic will be generated using the traffic counters of the same machine. The difference is used to generate the inflow and outflow counts. If the previous period and the next period flows are negative, this indicates a consistent negative count. This is regarded as installioin error so the negatives counts are converted into positive counts. 
+
+2.
+Extreme counts can result when the counters are reset due to power loss or similar reason. The flow in that period has to be reset to 0 as there is no reasonable estimate for that period. 
+
+Then data are summed over different SCP to find a per station value. When the data for all 
+stations are summed over, we have a system wide data.
+
+3. 
+The main data examined is the the ratio of entries over total traffic, which is the sum of extries and exits. The change of this value for each staton is examined over extended period to the trend. This value of the entire system is examined over time as well.  examines 
+
+Tools:
+
+Cleaning is done using pandas to read the raw text files, generate the per week traffic, and save back into a csv file. The per week csv files are combined and read into a SQL database file. 
+
+The main processing is done by reading the per week traffic data from SQLite and perform further processing and plotting using python. 
+
+The trend line of total traffic is discovered by examine the line plot. Boxplot is used to examine the distribution of the ratio of the inflow traffic over the entire system. From boxplot, we can see when the system show a large net inflow, more than 75% most of the station are showing this behavior, and it is just due to result of a few major stations.  
+
+
+Conclusion:
+The change in traffic pattern is coorlated with total traffic. So high traffic could result in certian operation procedure changes, which lead to large uncaptured exit traffic in pre-COVID period. The change could also be due to operation procedure changed over that time period as well. Local expertise is needed to further identify the causes.
+
+When the improveent is seen, it is also seen in 75% of the stations, so the improvement is seen system wide. By looking at the change of the ratio over time, the effective of any new policy can be examined. from any 
+
